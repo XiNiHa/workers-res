@@ -21,7 +21,7 @@ module Scheduled = {
     event,
     'env,
     context,
-  ) => Js.Promise.t<Webapi.Fetch.Response.t>
+  ) => Js.Promise.t<unit>
 
   module Context = {
     @send external waitUntil: (context, Js.Promise.t<'a>) => unit = "waitUntil"
