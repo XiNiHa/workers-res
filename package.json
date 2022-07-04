@@ -1,0 +1,26 @@
+{
+  "name": "workers-res",
+  "type": "module",
+  "description": "Cloudflare Workers bindings for ReScript",
+  "version": "0.0.0",
+  "author": "XiNiHa <me@xiniha.dev>",
+  "packageManager": "yarn@3.2.1",
+  "scripts": {
+    "watch": "rescript build -w",
+    "build": "rescript build",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' vitest"
+  },
+  "devDependencies": {
+    "@ryyppy/rescript-promise": "^2.1.0",
+    "@types/node": "^18.0.1",
+    "build-worker": "^0.2.2",
+    "miniflare": "^2.5.1",
+    "rescript": "^9.1.4",
+    "rescript-webapi": "^0.6.1",
+    "vite": "^2.9.13",
+    "vitest": "^0.17.0"
+  },
+  "peerDependencies": {
+    "rescript-webapi": "*"
+  }
+}

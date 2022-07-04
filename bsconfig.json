@@ -1,0 +1,25 @@
+{
+  "name": "workers-res",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    },
+    {
+      "dir": "tests",
+      "type": "dev",
+      "subdirs": true
+    }
+  ],
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "bs-dependencies": [
+    "rescript-webapi"
+  ],
+  "bs-dev-dependencies": [
+    "@ryyppy/rescript-promise"
+  ],
+  "suffix": ".bs.js"
+}
