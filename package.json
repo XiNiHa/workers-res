@@ -2,7 +2,7 @@
   "name": "workers-res",
   "type": "module",
   "description": "Cloudflare Workers bindings for ReScript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "XiNiHa <me@xiniha.dev>",
   "packageManager": "yarn@3.2.1",
   "scripts": {
