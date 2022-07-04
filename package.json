@@ -22,5 +22,10 @@
   },
   "peerDependencies": {
     "rescript-webapi": "*"
-  }
+  },
+  "files": [
+    "bsconfig.json",
+    "src",
+    "!*.bs.js"
+  ]
 }
