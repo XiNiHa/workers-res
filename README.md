@@ -22,7 +22,7 @@ include Workers.Make({
 # Features
 
 - [x] Module format Worker bindings
-- [ ] KV
+- [x] KV
 - [ ] R2
 - [ ] DO
 - [ ] HTMLRewriter

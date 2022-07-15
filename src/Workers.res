@@ -52,3 +52,5 @@ module Make = (
 
   let default = {fetch: T.handlers.fetch, scheduled: T.handlers.scheduled}
 }
+
+module Kv = Workers__Kv

@@ -41,3 +41,5 @@ module Make: (
 
   let default: exports
 }
+
+module Kv = Workers__Kv
