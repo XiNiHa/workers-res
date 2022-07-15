@@ -6,12 +6,7 @@ module List = {
   type res<'metadata> = {keys: array<key<'metadata>>, list_complete: bool, cursor: option<string>}
 
   @obj
-  external makeOpts: (
-    ~prefix: option<string>=?,
-    ~limit: option<int>=?,
-    ~cursor: option<string>=?,
-    unit,
-  ) => opts = ""
+  external makeOpts: (~prefix: string=?, ~limit: int=?, ~cursor: string=?, unit) => opts = ""
 
   @send external list: (~namespace: t, ~opts: opts=?, unit) => Js.Promise.t<res<'m>> = "list"
 }
@@ -23,9 +18,9 @@ module Get = {
   type getForType<'v> = (~namespace: t, ~key: string, ~opts: opts=?, unit) => Js.Promise.t<'v>
 
   @obj
-  external __makeOpts: (~\"type": option<string>, ~cacheTtl: option<int>) => inneropts = ""
+  external __makeOpts: (~\"type": string, ~cacheTtl: option<int>) => inneropts = ""
 
-  let makeOpts = (~cacheTtl: option<int>=?, ()) => {
+  let makeOpts = (~cacheTtl=?, ()) => {
     {cacheTtl: cacheTtl}
   }
 
@@ -43,10 +38,7 @@ module Get = {
     get(
       ~namespace,
       ~key,
-      ~opts=__makeOpts(
-        ~\"type"=Some(type_),
-        ~cacheTtl=opts->Belt.Option.flatMap(opts => opts.cacheTtl),
-      ),
+      ~opts=__makeOpts(~\"type"=type_, ~cacheTtl=opts->Belt.Option.flatMap(opts => opts.cacheTtl)),
       (),
     )
   }
@@ -54,10 +46,7 @@ module Get = {
     getWithMetadata(
       ~namespace,
       ~key,
-      ~opts=__makeOpts(
-        ~\"type"=Some(type_),
-        ~cacheTtl=opts->Belt.Option.flatMap(opts => opts.cacheTtl),
-      ),
+      ~opts=__makeOpts(~\"type"=type_, ~cacheTtl=opts->Belt.Option.flatMap(opts => opts.cacheTtl)),
       (),
     )
   }
@@ -91,24 +80,19 @@ module Put = {
     ~namespace: t,
     ~key: string,
     ~value: 'v,
-    ~opts: option<opts>=?,
+    ~opts: opts=?,
     unit,
   ) => Js.Promise.t<unit>
 
   @obj
-  external makeOpts: (
-    ~expiration: option<int>=?,
-    ~expirationTtl: option<int>=?,
-    ~metadata: option<'a>=?,
-    unit,
-  ) => opts = ""
+  external makeOpts: (~expiration: int=?, ~expirationTtl: int=?, ~metadata: 'a=?, unit) => opts = ""
 
   @send
   external putText: (
     ~namespace: t,
     ~key: string,
     ~value: string,
-    ~opts: option<opts>=?,
+    ~opts: opts=?,
     unit,
   ) => Js.Promise.t<unit> = "put"
   @send
@@ -116,7 +100,7 @@ module Put = {
     ~namespace: t,
     ~key: string,
     ~value: Js.TypedArray2.ArrayBuffer.t,
-    ~opts: option<opts>=?,
+    ~opts: opts=?,
     unit,
   ) => Js.Promise.t<unit> = "put"
   @send
@@ -124,7 +108,7 @@ module Put = {
     ~namespace: t,
     ~key: string,
     ~value: Js.TypedArray2.DataView.t,
-    ~opts: option<opts>=?,
+    ~opts: opts=?,
     unit,
   ) => Js.Promise.t<unit> = "put"
   @send
@@ -132,7 +116,7 @@ module Put = {
     ~namespace: t,
     ~key: string,
     ~value: Webapi.ReadableStream.t,
-    ~opts: option<opts>=?,
+    ~opts: opts=?,
     unit,
   ) => Js.Promise.t<unit> = "put"
 }

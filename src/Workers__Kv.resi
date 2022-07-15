@@ -6,9 +6,9 @@ module List: {
   type res<'metadata> = {keys: array<key<'metadata>>, list_complete: bool, cursor: option<string>}
 
   let makeOpts: (
-    ~prefix: option<string>=?,
-    ~limit: option<int>=?,
-    ~cursor: option<string>=?,
+    ~prefix: string=?,
+    ~limit: int=?,
+    ~cursor: string=?,
     unit,
   ) => opts
   let list: (~namespace: t, ~opts: opts=?, unit) => Js.Promise.t<res<'m>>
@@ -39,9 +39,9 @@ module Put: {
   type opts
 
   let makeOpts: (
-    ~expiration: option<int>=?,
-    ~expirationTtl: option<int>=?,
-    ~metadata: option<'a>=?,
+    ~expiration: int=?,
+    ~expirationTtl: int=?,
+    ~metadata: 'a=?,
     unit,
   ) => opts
 
@@ -49,7 +49,7 @@ module Put: {
     ~namespace: t,
     ~key: string,
     ~value: 'v,
-    ~opts: option<opts>=?,
+    ~opts: opts=?,
     unit,
   ) => Js.Promise.t<unit>
 
